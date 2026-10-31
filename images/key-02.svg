@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 625" width="1000" height="625" fill="none">
+  <!-- 1. Pure Seamless White Background -->
+  <rect width="1000" height="625" fill="#FFFFFF"/>
+
+  <defs>
+    <!-- Realistic Ambient & Contact Drop Shadow -->
+    <filter id="softShadow" x="-10%" y="-20%" width="120%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="16" result="blur"/>
+      <feOffset in="blur" dx="0" dy="24" result="offsetBlur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="contactShadow" x="-5%" y="-10%" width="110%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="cblur"/>
+      <feOffset in="cblur" dx="0" dy="8" result="coffsetBlur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Metallic Nickel / Silver Gradients -->
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9" />
+      <stop offset="25%" stop-color="#E2E8F0" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="75%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+
+    <linearGradient id="bladeEdge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#64748B" />
+    </linearGradient>
+
+    <!-- Dimple Hole Gradients -->
+    <radialGradient id="dimpleHole" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#64748B" />
+      <stop offset="60%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </radialGradient>
+
+    <!-- Head / Handle Gradients -->
+    <linearGradient id="headGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Blue Collar Ring -->
+    <linearGradient id="blueRing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Shadow Group -->
+  <g filter="url(#softShadow)">
+    <g filter="url(#contactShadow)">
+
+      <!-- Key Blade -->
+      <rect x="180" y="275" width="460" height="75" rx="6" fill="url(#bladeGrad)" stroke="url(#bladeEdge)" stroke-width="2"/>
+      <!-- Blade Tip Taper -->
+      <path d="M180 275 L150 295 L150 330 L180 350 Z" fill="url(#bladeGrad)" stroke="url(#bladeEdge)" stroke-width="2"/>
+
+      <!-- Longitudinal Milled Groove -->
+      <rect x="170" y="295" width="430" height="8" rx="3" fill="#64748B" opacity="0.6"/>
+      <rect x="170" y="303" width="430" height="3" fill="#FFFFFF" opacity="0.8"/>
+
+      <!-- Precision Drilled Dimples (Holes) -->
+      <ellipse cx="230" cy="322" rx="14" ry="11" fill="url(#dimpleHole)" stroke="#CBD5E1" stroke-width="1.5"/>
+      <circle cx="230" cy="322" r="4" fill="#0F172A"/>
+
+      <ellipse cx="280" cy="322" rx="16" ry="12" fill="url(#dimpleHole)" stroke="#CBD5E1" stroke-width="1.5"/>
+      <circle cx="280" cy="322" r="5" fill="#0F172A"/>
+
+      <ellipse cx="340" cy="322" rx="13" ry="10" fill="url(#dimpleHole)" stroke="#CBD5E1" stroke-width="1.5"/>
+      <circle cx="340" cy="322" r="3.5" fill="#0F172A"/>
+
+      <ellipse cx="400" cy="322" rx="17" ry="13" fill="url(#dimpleHole)" stroke="#CBD5E1" stroke-width="1.5"/>
+      <circle cx="400" cy="322" r="5.5" fill="#0F172A"/>
+
+      <ellipse cx="460" cy="322" rx="14" ry="11" fill="url(#dimpleHole)" stroke="#CBD5E1" stroke-width="1.5"/>
+      <circle cx="460" cy="322" r="4" fill="#0F172A"/>
+
+      <ellipse cx="520" cy="322" rx="12" ry="9" fill="url(#dimpleHole)" stroke="#CBD5E1" stroke-width="1.5"/>
+
+      <!-- Interactive Pin with Brass Ring -->
+      <ellipse cx="370" cy="285" rx="10" ry="7" fill="#D97706" stroke="#FDE68A" stroke-width="1"/>
+      <ellipse cx="430" cy="285" rx="8" ry="6" fill="url(#dimpleHole)" stroke="#CBD5E1" stroke-width="1"/>
+
+      <!-- Blue Collar Ring -->
+      <rect x="630" y="260" width="30" height="105" rx="6" fill="url(#blueRing)" stroke="#60A5FA" stroke-width="1.5"/>
+
+      <!-- Ergonomic Key Head (Bow) -->
+      <path d="M650 240 
+               C650 230, 665 210, 710 200 
+               C770 185, 830 200, 850 230 
+               C870 260, 870 365, 850 395 
+               C830 425, 770 440, 710 425 
+               C665 415, 650 395, 650 385 Z" 
+            fill="url(#headGrad)" stroke="#475569" stroke-width="3"/>
+
+      <!-- Keyring Hole -->
+      <circle cx="800" cy="312" r="24" fill="#FFFFFF" stroke="#334155" stroke-width="4"/>
+
+      <!-- Embossed Brand Text -->
+      <text x="735" y="295" font-family="'Montserrat', system-ui, sans-serif" font-size="16" font-weight="800" fill="#64748B" letter-spacing="2" text-anchor="middle">MUL-T-LOCK</text>
+      <text x="735" y="325" font-family="'Montserrat', system-ui, sans-serif" font-size="12" font-weight="700" fill="#475569" letter-spacing="1" text-anchor="middle">INTERACTIVE+</text>
+      <text x="735" y="345" font-family="'Montserrat', system-ui, sans-serif" font-size="10" font-weight="600" fill="#64748B" letter-spacing="2" text-anchor="middle">MT5+</text>
+
+      <!-- Grip Texture Indentations -->
+      <rect x="675" y="255" width="6" height="30" rx="2" fill="#0F172A" opacity="0.6"/>
+      <rect x="675" y="340" width="6" height="30" rx="2" fill="#0F172A" opacity="0.6"/>
+
+    </g>
+  </g>
+</svg>

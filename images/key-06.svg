@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 625" width="1000" height="625" fill="none">
+  <!-- Чистый бесшовный белый фон -->
+  <rect width="1000" height="625" fill="#FFFFFF"/>
+  <defs>
+    <!-- Мягкая и контактная тени -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blur"/>
+      <feOffset in="blur" dx="0" dy="22" result="offsetBlur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="contactShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="cblur"/>
+      <feOffset in="cblur" dx="0" dy="8" result="coffset"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Металл лезвия -->
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="25%" stop-color="#E2E8F0"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="75%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+    <!-- Корпус головки ключа с чипом -->
+    <linearGradient id="headMatte" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="40%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <!-- Лазерная змейка (фрезеровка волной) -->
+    <linearGradient id="milledGroove" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748B"/>
+      <stop offset="70%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <g filter="url(#contactShadow)">
+      <!-- Стальное лезвие с лазерной нарезкой -->
+      <!-- Кончик лезвия -->
+      <path d="M160 312.5 L200 285 L600 285 L600 340 L200 340 Z" fill="url(#bladeGrad)" stroke="#94A3B8" stroke-width="1.5"/>
+      <!-- Фаска кончика -->
+      <path d="M160 312.5 L200 285 L205 290 L175 312.5 L205 335 L200 340 Z" fill="#FFFFFF" opacity="0.6"/>
+
+      <!-- Лазерный внутренний волнообразный паз (Snake wave) -->
+      <path d="M220 312.5 Q 260 295, 300 312.5 T 380 312.5 T 460 312.5 T 540 312.5 L 560 312.5" fill="none" stroke="url(#milledGroove)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M220 312.5 Q 260 295, 300 312.5 T 380 312.5 T 460 312.5 T 540 312.5 L 560 312.5" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Пластиковая головка с чипом иммобилайзера -->
+      <path d="M570 240 C 600 220, 750 210, 810 240 C 855 262, 860 363, 810 385 C 750 415, 600 405, 570 385 C 555 375, 550 350, 550 312.5 C 550 275, 555 250, 570 240 Z" fill="url(#headMatte)" stroke="#475569" stroke-width="2"/>
+
+      <!-- Отверстие для брелока / кольца -->
+      <circle cx="800" cy="312.5" r="24" fill="#FFFFFF"/>
+      <circle cx="800" cy="312.5" r="24" fill="none" stroke="#334155" stroke-width="4"/>
+
+      <!-- Слот / крышечка транспондера чипа -->
+      <rect x="630" y="275" width="90" height="75" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+      <!-- Символ чипа / антенны -->
+      <path d="M665 295 C 675 303, 675 322, 665 330 M680 288 C 695 300, 695 325, 680 337" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <circle cx="655" cy="312.5" r="3" fill="#38BDF8"/>
+    </g>
+  </g>
+</svg>

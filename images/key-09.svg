@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 625" width="1000" height="625" fill="none">
+  <!-- Чистый бесшовный белый фон -->
+  <rect width="1000" height="625" fill="#FFFFFF"/>
+  <defs>
+    <filter id="abloyShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blur"/>
+      <feOffset in="blur" dx="0" dy="22" result="offsetBlur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="abloyContact" x="-10%" y="-10%" width="120%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="cblur"/>
+      <feOffset in="cblur" dx="0" dy="8" result="coffset"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Золотистая благородная латунь -->
+    <linearGradient id="brassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="20%" stop-color="#FACC15"/>
+      <stop offset="45%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+    <linearGradient id="brassDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A16207"/>
+      <stop offset="50%" stop-color="#713F12"/>
+      <stop offset="100%" stop-color="#854D0E"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#abloyShadow)">
+    <g filter="url(#abloyContact)">
+      <!-- Полукруглый латунный стержень финского ключа (D-образный в сечении) -->
+      <!-- Тело стержня -->
+      <path d="M180 312.5 C 180 295, 195 285, 220 285 L 610 285 L 610 340 L 220 340 C 195 340, 180 330, 180 312.5 Z" fill="url(#brassGrad)" stroke="#A16207" stroke-width="2"/>
+
+      <!-- Косые угловые пропилы дискового механизма Abloy Classic -->
+      <!-- Пропил 1 -->
+      <polygon points="260,285 285,285 305,325 280,325" fill="url(#brassDark)" stroke="#CA8A04" stroke-width="1"/>
+      <!-- Пропил 2 -->
+      <polygon points="320,285 345,285 375,335 350,335" fill="url(#brassDark)" stroke="#CA8A04" stroke-width="1"/>
+      <!-- Пропил 3 -->
+      <polygon points="390,285 415,285 440,320 415,320" fill="url(#brassDark)" stroke="#CA8A04" stroke-width="1"/>
+      <!-- Пропил 4 -->
+      <polygon points="460,285 485,285 520,338 495,338" fill="url(#brassDark)" stroke="#CA8A04" stroke-width="1"/>
+      <!-- Пропил 5 -->
+      <polygon points="535,285 560,285 580,318 555,318" fill="url(#brassDark)" stroke="#CA8A04" stroke-width="1"/>
+
+      <!-- Продольная грань плоской стороны полукруга -->
+      <line x1="210" y1="340" x2="610" y2="340" stroke="#713F12" stroke-width="3"/>
+      <line x1="210" y1="337" x2="610" y2="337" stroke="#FEF08A" stroke-width="1" opacity="0.8"/>
+
+      <!-- Полукруглая классическая латунная головка Abloy -->
+      <path d="M600 240 C 650 200, 780 200, 830 240 C 865 270, 870 355, 830 385 C 780 425, 650 425, 600 385 Z" fill="url(#brassGrad)" stroke="#A16207" stroke-width="2"/>
+
+      <!-- Круглое отверстие головки ключа -->
+      <circle cx="790" cy="312.5" r="28" fill="#FFFFFF"/>
+      <circle cx="790" cy="312.5" r="28" fill="none" stroke="#A16207" stroke-width="3"/>
+
+      <!-- Тисненый логотип / надпись ABLOY -->
+      <text x="685" y="320" font-family="'Arial Black', sans-serif" font-size="22" font-weight="900" fill="#713F12" letter-spacing="4" text-anchor="middle">ABLOY</text>
+    </g>
+  </g>
+</svg>

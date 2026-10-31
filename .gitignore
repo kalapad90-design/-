@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+.vscode/
+*.log
+*.ps1
+.vercel
