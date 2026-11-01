@@ -754,6 +754,7 @@ button {
 }
 
 .key-card__img {
+  mix-blend-mode: multiply;
   max-width: 100%;
   max-height: 100%;
   width: auto;
@@ -1011,13 +1012,32 @@ button {
 }
 
 .location-info-card {
-  background-color: var(--color-gray-50);
+  background-color: var(--color-white);
   border: 1.5px solid var(--color-gray-200);
   border-radius: var(--radius-xl);
   padding: 2.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.location-info-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%232563EB' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.08'%3E%3Cg transform='translate(25%2C 20) rotate(-35 12 12)'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='M13 13 L24 24 L21 27 L18 24 L16 26 L14 24'/%3E%3C/g%3E%3Cg transform='translate(108%2C 25)'%3E%3Crect x='2' y='8' width='16' height='12' rx='3'/%3E%3Cpath d='M5 8 V5 a5 5 0 0 1 10 0 v3'/%3E%3Ccircle cx='10' cy='13' r='1.5'/%3E%3Cpath d='M10 14.5 v2.5'/%3E%3C/g%3E%3Cg transform='translate(30%2C 95)'%3E%3Ccircle cx='10' cy='10' r='9'/%3E%3Cpolyline points='10 4 10 10 14 10'/%3E%3C/g%3E%3Cg transform='translate(112%2C 105) rotate(25 10 10)'%3E%3Ccircle cx='8' cy='8' r='5'/%3E%3Ccircle cx='8' cy='8' r='1.8'/%3E%3Cpath d='M11 11 L20 20 L18 22 L15 19 L13 21'/%3E%3C/g%3E%3Cpath d='M80 20 Q80 26 86 26 Q80 26 80 32 Q80 26 74 26 Q80 26 80 20 Z'/%3E%3Cpath d='M85 130 Q85 135 90 135 Q85 135 85 140 Q85 135 80 135 Q85 135 85 130 Z'/%3E%3Cpath d='M148 70 Q148 74 152 74 Q148 74 148 78 Q148 74 144 74 Q148 74 148 70 Z'/%3E%3Cpath d='M14 62 Q14 66 18 66 Q14 66 14 70 Q14 66 10 66 Q14 66 14 62 Z'/%3E%3Ccircle cx='70' cy='75' r='1.2' fill='%232563EB'/%3E%3Ccircle cx='95' cy='70' r='1.2' fill='%232563EB'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 140px 140px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.location-info-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .location-info-card__title {
@@ -1079,11 +1099,29 @@ button {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.osm-map-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%232563EB' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.08'%3E%3Cg transform='translate(25%2C 20) rotate(-35 12 12)'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='M13 13 L24 24 L21 27 L18 24 L16 26 L14 24'/%3E%3C/g%3E%3Cg transform='translate(108%2C 25)'%3E%3Crect x='2' y='8' width='16' height='12' rx='3'/%3E%3Cpath d='M5 8 V5 a5 5 0 0 1 10 0 v3'/%3E%3Ccircle cx='10' cy='13' r='1.5'/%3E%3Cpath d='M10 14.5 v2.5'/%3E%3C/g%3E%3Cg transform='translate(30%2C 95)'%3E%3Ccircle cx='10' cy='10' r='9'/%3E%3Cpolyline points='10 4 10 10 14 10'/%3E%3C/g%3E%3Cg transform='translate(112%2C 105) rotate(25 10 10)'%3E%3Ccircle cx='8' cy='8' r='5'/%3E%3Ccircle cx='8' cy='8' r='1.8'/%3E%3Cpath d='M11 11 L20 20 L18 22 L15 19 L13 21'/%3E%3C/g%3E%3Cpath d='M80 20 Q80 26 86 26 Q80 26 80 32 Q80 26 74 26 Q80 26 80 20 Z'/%3E%3Cpath d='M85 130 Q85 135 90 135 Q85 135 85 140 Q85 135 80 135 Q85 135 85 130 Z'/%3E%3Cpath d='M148 70 Q148 74 152 74 Q148 74 148 78 Q148 74 144 74 Q148 74 148 70 Z'/%3E%3Cpath d='M14 62 Q14 66 18 66 Q14 66 14 70 Q14 66 10 66 Q14 66 14 62 Z'/%3E%3Ccircle cx='70' cy='75' r='1.2' fill='%232563EB'/%3E%3Ccircle cx='95' cy='70' r='1.2' fill='%232563EB'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 140px 140px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.osm-map-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .osm-map-header {
   padding: 1.25rem 1.5rem;
-  background-color: var(--color-gray-50);
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-gray-200);
   display: flex;
   align-items: center;
