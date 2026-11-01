@@ -1235,27 +1235,31 @@ button {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 8px;
   width: 100%;
+  max-width: 100%;
+  overflow: visible;
 }
 
 .filter-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 0.95rem;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
   background-color: var(--color-surface);
   border: 1.5px solid var(--border-light);
   border-radius: var(--radius-full);
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.825rem;
   font-weight: 600;
   color: var(--text-main);
   cursor: pointer;
   user-select: none;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-xs);
-  min-height: 42px;
+  min-height: 38px;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .filter-chip:hover {
@@ -1373,25 +1377,16 @@ button {
   .catalog-filters {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
     justify-content: center;
     padding-bottom: 0;
-    overflow-x: visible;
-    overflow-y: hidden;
-    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .catalog-filters.is-collapsed {
-    max-height: 86px;
-  }
-
-  .catalog-filters.is-expanded {
-    max-height: 400px;
+    overflow: visible;
   }
 
   .filter-chip {
-    padding: 0.45rem 0.85rem;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.775rem;
+    min-height: 36px;
   }
 
   .carousel-container {
@@ -2067,14 +2062,6 @@ button {
     padding-bottom: 0 !important;
   }
 
-  .catalog-filters.is-collapsed {
-    max-height: 86px;
-  }
-
-  .catalog-filters.is-expanded {
-    max-height: 400px;
-  }
-
   .btn-toggle-filters {
     display: inline-flex;
   }
@@ -2102,5 +2089,19 @@ button {
 
   .btn-toggle-filters {
     display: inline-flex !important;
+  }
+}
+
+.btn-toggle-filters {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .catalog-filters {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    overflow: visible !important;
+    max-height: none !important;
+    gap: 6px !important;
   }
 }

@@ -460,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentIndex = 0;
     buildTrack();
-  renderGridView();
+    renderGridView();
   }
 
   if (allChip) {
@@ -503,14 +503,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const carouselIndicatorBarEl = document.querySelector('.carousel-indicator-bar');
   let currentViewMode = 'carousel';
 
-  function renderGridView() {
+    function renderGridView() {
     if (!catalogGrid) return;
     catalogGrid.innerHTML = '';
-    if (currentCatalog.length === 0) {
+    const items = currentCatalog.length > 0 ? currentCatalog : ORIGINAL_CATALOG;
+    if (items.length === 0) {
       catalogGrid.innerHTML = '<div style="padding: 3rem 1rem; text-align: center; color: var(--color-gray-500); grid-column: 1 / -1; font-weight: 600;">По выбранным категориям ключи не найдены</div>';
       return;
     }
-    currentCatalog.forEach((key, idx) => {
+    items.forEach((key, idx) => {
       const card = createCardElement(key, idx);
       card.classList.remove('is-blurred');
       card.classList.add('is-active');
@@ -558,26 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnViewCarousel) btnViewCarousel.addEventListener('click', () => setViewMode('carousel'));
   if (btnViewGrid) btnViewGrid.addEventListener('click', () => setViewMode('grid'));
 
-  const btnToggleFilters = document.getElementById('btnToggleFilters');
-  const catalogFiltersEl = document.getElementById('catalogFilters');
-  if (btnToggleFilters && catalogFiltersEl) {
-    catalogFiltersEl.classList.add('is-collapsed');
-    btnToggleFilters.addEventListener('click', () => {
-      const isCollapsed = catalogFiltersEl.classList.contains('is-collapsed');
-      if (isCollapsed) {
-        catalogFiltersEl.classList.remove('is-collapsed');
-        catalogFiltersEl.classList.add('is-expanded');
-        btnToggleFilters.classList.add('is-expanded');
-        btnToggleFilters.setAttribute('aria-expanded', 'true');
-        btnToggleFilters.querySelector('.btn-toggle-filters__text').textContent = 'Свернуть';
-      } else {
-        catalogFiltersEl.classList.remove('is-expanded');
-        catalogFiltersEl.classList.add('is-collapsed');
-        btnToggleFilters.classList.remove('is-expanded');
-        btnToggleFilters.setAttribute('aria-expanded', 'false');
-        btnToggleFilters.querySelector('.btn-toggle-filters__text').textContent = 'Все категории';
-      }
-    });
-  }
-
+  updateFilterUI();
+  renderGridView();
+  buildTrack();
 });
