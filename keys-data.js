@@ -134,16 +134,6 @@ const KEYS_CATALOG = [
     time: '15–20 минут'
   },
   {
-    id: 'key-13',
-    code: '#13',
-    name: 'Сувальдный дверной ключ',
-    category: 'Квартирные',
-    image: 'images/key-13.png?v=8',
-    price: 750,
-    priceFormatted: '750 ₽',
-    time: '10–15 минут'
-  },
-  {
     id: 'key-14',
     code: '#14',
     name: 'Ключ Gerda',
