@@ -323,8 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.remove('is-blurred');
         card.classList.add('is-active');
       } else {
-        card.classList.add('is-blurred');
-        card.classList.remove('is-active');
+        card.classList.remove('is-blurred');
+        card.classList.add('is-active');
       }
     });
 
@@ -460,6 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentIndex = 0;
     buildTrack();
+  renderGridView();
   }
 
   if (allChip) {
