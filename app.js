@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
           if (navigator.clipboard && navigator.clipboard.writeText) {
             await navigator.clipboard.writeText(phone);
           } else {
-
             const temp = document.createElement('input');
             temp.value = phone;
             document.body.appendChild(temp);
@@ -121,43 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const ORIGINAL_CATALOG = window.KEYS_CATALOG || [];
   let currentCatalog = [...ORIGINAL_CATALOG];
 
-  const track = document.getElementById('carouselTrack');
-  const viewport = document.getElementById('carouselViewport');
-  const prevBtn = document.getElementById('prevKeyBtn');
-  const nextBtn = document.getElementById('nextKeyBtn');
-  const counterDisplay = document.getElementById('carouselCounter');
-  const dotsContainer = document.getElementById('carouselDots');
+  const catalogGrid = document.getElementById('catalogGrid');
   const filtersContainer = document.getElementById('catalogFilters');
   const resetFiltersBtn = document.getElementById('resetFiltersBtn');
 
-  if (!track || !viewport) return;
-
-  let currentIndex = 0;
-  let isAnimating = false;
-  let bufferCount = 5;
-
-  function getVisibleCount() {
-    const width = window.innerWidth;
-    if (width < 340) return 1;
-    if (width < 860) return 2;
-    if (width < 1200) return 3;
-    return 4;
-  }
-
-  const categoryIcons = {
-    'Квартирные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
-    'Автомобильные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="3"/><path d="M5 11l2-6h10l2 6"/><circle cx="7.5" cy="16.5" r="1.5"/><circle cx="16.5" cy="16.5" r="1.5"/></svg>',
-    'Сейфовые': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 7v2"/><path d="M12 15v2"/><path d="M7 12h2"/><path d="M15 12h2"/></svg>',
-    'Домофонные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>',
-    'Специальные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
-  };
-
-  function createCardElement(key, absoluteIndex) {
+  function createCardElement(key, index) {
     const card = document.createElement('div');
-    card.className = 'key-card';
+    card.className = 'key-card is-active';
     card.setAttribute('data-id', key.id);
     card.setAttribute('data-category', key.category);
-    card.setAttribute('data-index', absoluteIndex);
+    card.setAttribute('data-index', index);
 
     card.innerHTML = `
       <div class="key-card__thumb-box">
@@ -212,220 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   }
 
-  function buildTrack() {
-    track.innerHTML = '';
-    const total = currentCatalog.length;
-
-    if (total === 0) {
-      track.innerHTML = '<div style="padding: 2rem; text-align: center; color: var(--text-muted); width: 100%;">По выбранным категориям ключи не найдены</div>';
-      if (counterDisplay) counterDisplay.textContent = 'Ключи не найдены';
+  function renderGridView() {
+    if (!catalogGrid) return;
+    catalogGrid.innerHTML = '';
+    const items = currentCatalog.length > 0 ? currentCatalog : ORIGINAL_CATALOG;
+    if (items.length === 0) {
+      catalogGrid.innerHTML = '<div style="padding: 3rem 1rem; text-align: center; color: var(--color-gray-500); grid-column: 1 / -1; font-weight: 600;">По выбранным категориям ключи не найдены</div>';
       return;
     }
-
-    bufferCount = Math.min(total, 5);
-
-    for (let i = total - bufferCount; i < total; i++) {
-      const card = createCardElement(currentCatalog[i], i - total);
-      track.appendChild(card);
-    }
-
-    for (let i = 0; i < total; i++) {
-      const card = createCardElement(currentCatalog[i], i);
-      track.appendChild(card);
-    }
-
-    for (let i = 0; i < bufferCount; i++) {
-      const card = createCardElement(currentCatalog[i], total + i);
-      track.appendChild(card);
-    }
-
-    buildDots();
-    updateTrackPosition(false);
-  }
-
-  function buildDots() {
-    if (!dotsContainer) return;
-    dotsContainer.innerHTML = '';
-    const total = currentCatalog.length;
-    if (total <= 1) return;
-
-    const visibleCount = getVisibleCount();
-    const dotsCount = Math.max(1, Math.ceil(total / visibleCount));
-
-    for (let i = 0; i < dotsCount; i++) {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
-      dot.setAttribute('aria-label', `Перейти к группе ключей ${i + 1}`);
-      dot.addEventListener('click', () => {
-        moveToIndex(i * visibleCount);
-      });
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  function updateDots() {
-    if (!dotsContainer) return;
-    const total = currentCatalog.length;
-    if (total === 0) return;
-
-    const visibleCount = getVisibleCount();
-    const group = Math.floor(currentIndex / visibleCount);
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === group);
+    items.forEach((key, idx) => {
+      const card = createCardElement(key, idx);
+      catalogGrid.appendChild(card);
     });
   }
-
-  function calculateDimensions() {
-    const visibleCount = getVisibleCount();
-    const viewportWidth = viewport.clientWidth;
-    const gap = window.innerWidth < 560 ? 8 : 16;
-    const total = currentCatalog.length;
-
-    const cardWidth = Math.max(80, Math.floor((viewportWidth - (gap * (visibleCount - 1))) / visibleCount));
-
-    const cards = track.querySelectorAll('.key-card');
-    cards.forEach(card => {
-      card.style.flex = `0 0 ${cardWidth}px`;
-      card.style.width = `${cardWidth}px`;
-      card.style.minWidth = `${cardWidth}px`;
-      card.style.maxWidth = `${cardWidth}px`;
-    });
-
-    track.style.gap = `${gap}px`;
-    return { cardWidth, gap, stepWidth: cardWidth + gap };
-  }
-
-  function updateTrackPosition(withTransition = true) {
-    const total = currentCatalog.length;
-    const cards = track.querySelectorAll('.key-card');
-    if (cards.length === 0 || total === 0) return;
-
-    const { stepWidth } = calculateDimensions();
-    const offsetIndex = currentIndex + bufferCount;
-    const translateX = -(offsetIndex * stepWidth);
-
-    if (withTransition) {
-      track.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-    } else {
-      track.style.transition = 'none';
-    }
-
-    track.style.transform = `translateX(${translateX}px)`;
-
-    const visibleCount = getVisibleCount();
-    const activeStart = offsetIndex;
-    const activeEnd = offsetIndex + visibleCount - 1;
-
-    cards.forEach((card, idx) => {
-      if (idx >= activeStart && idx <= activeEnd) {
-        card.classList.remove('is-blurred');
-        card.classList.add('is-active');
-      } else {
-        card.classList.remove('is-blurred');
-        card.classList.add('is-active');
-      }
-    });
-
-    if (counterDisplay) {
-      const startKey = String(currentIndex + 1).padStart(2, '0');
-      const endKey = String(Math.min(total, currentIndex + visibleCount)).padStart(2, '0');
-      counterDisplay.innerHTML = `Показаны <span>${startKey} — ${endKey}</span> из ${total}`;
-    }
-
-    updateDots();
-  }
-
-  function moveToIndex(newIndex) {
-    const total = currentCatalog.length;
-    if (isAnimating || total === 0) return;
-    isAnimating = true;
-
-    currentIndex = (newIndex + total) % total;
-    updateTrackPosition(true);
-
-    setTimeout(() => {
-      isAnimating = false;
-    }, 450);
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      const total = currentCatalog.length;
-      if (isAnimating || total <= 1) return;
-      isAnimating = true;
-
-      currentIndex--;
-
-      if (currentIndex < 0) {
-        updateTrackPosition(true);
-        setTimeout(() => {
-          currentIndex = total - 1;
-          updateTrackPosition(false);
-          isAnimating = false;
-        }, 450);
-      } else {
-        updateTrackPosition(true);
-        setTimeout(() => {
-          isAnimating = false;
-        }, 450);
-      }
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const total = currentCatalog.length;
-      if (isAnimating || total <= 1) return;
-      isAnimating = true;
-
-      currentIndex++;
-
-      if (currentIndex >= total) {
-        updateTrackPosition(true);
-        setTimeout(() => {
-          currentIndex = 0;
-          updateTrackPosition(false);
-          isAnimating = false;
-        }, 450);
-      } else {
-        updateTrackPosition(true);
-        setTimeout(() => {
-          isAnimating = false;
-        }, 450);
-      }
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft' && prevBtn) prevBtn.click();
-    if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
-  });
-
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  viewport.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  viewport.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 35) {
-      if (diff > 0 && nextBtn) nextBtn.click();
-      if (diff < 0 && prevBtn) prevBtn.click();
-    }
-  }, { passive: true });
-
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      updateTrackPosition(false);
-    }, 120);
-  });
 
   const selectedCategories = new Set();
   const allChip = filtersContainer ? filtersContainer.querySelector('.filter-chip--all') : null;
@@ -458,8 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
       currentCatalog = ORIGINAL_CATALOG.filter(k => selectedCategories.has(k.category));
     }
 
-    currentIndex = 0;
-    buildTrack();
     renderGridView();
   }
 
@@ -494,72 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  buildTrack();
-
-  const btnViewCarousel = document.getElementById('btnViewCarousel');
-  const btnViewGrid = document.getElementById('btnViewGrid');
-  const catalogGrid = document.getElementById('catalogGrid');
-  const carouselContainerEl = document.querySelector('.carousel-container');
-  const carouselIndicatorBarEl = document.querySelector('.carousel-indicator-bar');
-  let currentViewMode = 'carousel';
-
-    function renderGridView() {
-    if (!catalogGrid) return;
-    catalogGrid.innerHTML = '';
-    const items = currentCatalog.length > 0 ? currentCatalog : ORIGINAL_CATALOG;
-    if (items.length === 0) {
-      catalogGrid.innerHTML = '<div style="padding: 3rem 1rem; text-align: center; color: var(--color-gray-500); grid-column: 1 / -1; font-weight: 600;">По выбранным категориям ключи не найдены</div>';
-      return;
-    }
-    items.forEach((key, idx) => {
-      const card = createCardElement(key, idx);
-      card.classList.remove('is-blurred');
-      card.classList.add('is-active');
-      card.style.flex = '';
-      card.style.width = '';
-      card.style.minWidth = '';
-      card.style.maxWidth = '';
-      catalogGrid.appendChild(card);
-    });
-  }
-
-  function setViewMode(mode) {
-    currentViewMode = mode;
-    if (mode === 'grid') {
-      if (btnViewGrid) {
-        btnViewGrid.classList.add('is-active');
-        btnViewGrid.setAttribute('aria-selected', 'true');
-      }
-      if (btnViewCarousel) {
-        btnViewCarousel.classList.remove('is-active');
-        btnViewCarousel.setAttribute('aria-selected', 'false');
-      }
-      if (carouselContainerEl) carouselContainerEl.style.display = 'none';
-      if (carouselIndicatorBarEl) carouselIndicatorBarEl.style.display = 'none';
-      if (catalogGrid) {
-        catalogGrid.style.display = 'grid';
-        renderGridView();
-      }
-    } else {
-      if (btnViewCarousel) {
-        btnViewCarousel.classList.add('is-active');
-        btnViewCarousel.setAttribute('aria-selected', 'true');
-      }
-      if (btnViewGrid) {
-        btnViewGrid.classList.remove('is-active');
-        btnViewGrid.setAttribute('aria-selected', 'false');
-      }
-      if (catalogGrid) catalogGrid.style.display = 'none';
-      if (carouselContainerEl) carouselContainerEl.style.display = 'flex';
-      if (carouselIndicatorBarEl) carouselIndicatorBarEl.style.display = 'flex';
-      updateCarousel();
-    }
-  }
-
-  if (btnViewCarousel) btnViewCarousel.addEventListener('click', () => setViewMode('carousel'));
-  if (btnViewGrid) btnViewGrid.addEventListener('click', () => setViewMode('grid'));
-
   updateFilterUI();
   renderGridView();
-  buildTrack();
 });

@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=3.0">
+  <link rel="stylesheet" href="style.css?v=4.0">
 </head>
 <body>
 
@@ -210,7 +210,7 @@
       </div>
     </section>
 
-    <section class="carousel-section" id="catalog">
+    <section class="catalog-section" id="catalog">
       <div class="container">
         
         <div class="section-head">
@@ -280,58 +280,7 @@
           
         </div>
 
-        <div class="catalog-view-bar">
-          <div class="catalog-view-switcher" role="tablist" aria-label="Переключение отображения ключей">
-            <button type="button" class="view-switch-btn is-active" id="btnViewCarousel" data-view="carousel" role="tab" aria-selected="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-                <line x1="8" y1="6" x2="8" y2="18"></line>
-                <line x1="16" y1="6" x2="16" y2="18"></line>
-              </svg>
-              <span>Карусель</span>
-            </button>
-            <button type="button" class="view-switch-btn" id="btnViewGrid" data-view="grid" role="tab" aria-selected="false">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
-                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
-                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
-                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
-              </svg>
-              <span>Все ключи плиткой</span>
-            </button>
-          </div>
-        </div>
-
         <div class="catalog-grid" id="catalogGrid"></div>
-
-        <div class="carousel-container">
-          <button type="button" class="carousel-arrow carousel-arrow--left" id="prevKeyBtn" aria-label="Предыдущий ключ (стрелка влево)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-
-          <div class="carousel-viewport" id="carouselViewport">
-            <div class="carousel-track" id="carouselTrack">
-              
-            </div>
-          </div>
-
-          <button type="button" class="carousel-arrow carousel-arrow--right" id="nextKeyBtn" aria-label="Следующий ключ (стрелка вправо)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-        </div>
-
-        <div class="carousel-indicator-bar">
-          <div class="carousel-counter" id="carouselCounter">
-            Показаны ключи: <span>#01 — #05</span> из 15
-          </div>
-          <div class="carousel-dots" id="carouselDots">
-            
-          </div>
-        </div>
 
       </div>
     </section>
@@ -527,7 +476,7 @@
     </div>
   </footer>
 
-  <script src="keys-data.js?v=3.0"></script>
-  <script src="app.js?v=3.0"></script>
+  <script src="keys-data.js?v=4.0"></script>
+  <script src="app.js?v=4.0"></script>
 </body>
 </html>
