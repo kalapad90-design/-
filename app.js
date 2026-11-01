@@ -161,10 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getVisibleCount() {
     const width = window.innerWidth;
-    if (width < 600) return 1;
-    if (width < 900) return 2;
-    if (width < 1200) return 3;
-    return 4; // Максимум 4 карточки на десктопе для солидной ширины
+    if (width < 340) return 1; // Ультраузкие старые телефоны
+    if (width < 860) return 2; // Мобильные телефоны и планшеты: 2 карточки в ряд!
+    if (width < 1200) return 3; // Средние экраны
+    return 4; // Десктопы: 4 карточки
   }
 
   const categoryIcons = {
@@ -546,4 +546,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Запуск карусели
   buildTrack();
+
+  /* ========================================================================
+     ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ: КАРУСЕЛЬ / СЕТКА (ВСЕ КЛЮЧИ ПЛИТКОЙ)
+     ======================================================================== */
+  const btnViewCarousel = document.getElementById('btnViewCarousel');
+  const btnViewGrid = document.getElementById('btnViewGrid');
+  const catalogGrid = document.getElementById('catalogGrid');
+  const carouselContainerEl = document.querySelector('.carousel-container');
+  const carouselIndicatorBarEl = document.querySelector('.carousel-indicator-bar');
+  let currentViewMode = 'carousel';
+
+  function renderGridView() {
+    if (!catalogGrid) return;
+    catalogGrid.innerHTML = '';
+    if (currentCatalog.length === 0) {
+      catalogGrid.innerHTML = '<div style="padding: 3rem 1rem; text-align: center; color: var(--color-gray-500); grid-column: 1 / -1; font-weight: 600;">По выбранным категориям ключи не найдены</div>';
+      return;
+    }
+    currentCatalog.forEach((key, idx) => {
+      const card = createCardElement(key, idx);
+      card.classList.remove('is-blurred');
+      card.classList.add('is-active');
+      card.style.flex = '';
+      card.style.width = '';
+      card.style.minWidth = '';
+      card.style.maxWidth = '';
+      catalogGrid.appendChild(card);
+    });
+  }
+
+  function setViewMode(mode) {
+    currentViewMode = mode;
+    if (mode === 'grid') {
+      if (btnViewGrid) {
+        btnViewGrid.classList.add('is-active');
+        btnViewGrid.setAttribute('aria-selected', 'true');
+      }
+      if (btnViewCarousel) {
+        btnViewCarousel.classList.remove('is-active');
+        btnViewCarousel.setAttribute('aria-selected', 'false');
+      }
+      if (carouselContainerEl) carouselContainerEl.style.display = 'none';
+      if (carouselIndicatorBarEl) carouselIndicatorBarEl.style.display = 'none';
+      if (catalogGrid) {
+        catalogGrid.style.display = 'grid';
+        renderGridView();
+      }
+    } else {
+      if (btnViewCarousel) {
+        btnViewCarousel.classList.add('is-active');
+        btnViewCarousel.setAttribute('aria-selected', 'true');
+      }
+      if (btnViewGrid) {
+        btnViewGrid.classList.remove('is-active');
+        btnViewGrid.setAttribute('aria-selected', 'false');
+      }
+      if (catalogGrid) catalogGrid.style.display = 'none';
+      if (carouselContainerEl) carouselContainerEl.style.display = 'flex';
+      if (carouselIndicatorBarEl) carouselIndicatorBarEl.style.display = 'flex';
+      updateCarousel();
+    }
+  }
+
+  if (btnViewCarousel) btnViewCarousel.addEventListener('click', () => setViewMode('carousel'));
+  if (btnViewGrid) btnViewGrid.addEventListener('click', () => setViewMode('grid'));
+
 });

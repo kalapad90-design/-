@@ -1942,3 +1942,192 @@ button {
   background-color: var(--color-blue-700);
   transform: translateY(-1px);
 }
+
+
+/* ПЕРЕКЛЮЧАТЕЛЬ ВИДА КАТАЛОГА (КАРУСЕЛЬ / СЕТКА) */
+.catalog-view-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-block: 0.5rem 1.25rem;
+}
+
+.catalog-view-switcher {
+  display: inline-flex;
+  background-color: var(--color-gray-100);
+  border: 1.5px solid var(--color-gray-200);
+  padding: 3px;
+  border-radius: var(--radius-full);
+  gap: 3px;
+}
+
+.view-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-gray-600);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.view-switch-btn:hover {
+  color: var(--color-blue-600);
+}
+
+.view-switch-btn.is-active {
+  background-color: var(--color-white);
+  color: var(--color-blue-600);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+/* РЕЖИМ СЕТКИ (ВСЕ КЛЮЧИ ПЛИТКОЙ) */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-block: 0.5rem 2rem;
+}
+
+@media (max-width: 1100px) {
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+
+/* АДАПТИВ КАРТОЧЕК ДЛЯ РЕЖИМА 2 В РЯД НА МОБИЛЬНЫХ */
+@media (max-width: 640px) {
+  .carousel-container {
+    gap: 0.35rem;
+  }
+
+  .carousel-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .carousel-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .key-card {
+    border-radius: var(--radius-md);
+  }
+
+  .key-card__thumb-box {
+    padding: 0.75rem 0.5rem 0.25rem;
+  }
+
+  .key-card__img-wrap {
+    height: 125px;
+  }
+
+  .key-card__time-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.35rem;
+  }
+
+  .key-card__time-tag svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .key-card__body {
+    padding: 0.75rem 0.6rem;
+  }
+
+  .key-card__meta-row {
+    margin-bottom: 0.25rem;
+  }
+
+  .key-card__category {
+    font-size: 0.62rem;
+    padding: 0.15rem 0.35rem;
+  }
+
+  .key-card__stock-status {
+    font-size: 0.62rem;
+  }
+
+  .key-card__title {
+    font-size: 0.85rem;
+    min-height: 2.3em;
+    line-height: 1.25;
+  }
+
+  .key-card__price-box {
+    margin-block: 0.2rem 0.4rem;
+  }
+
+  .key-card__price-label {
+    font-size: 0.65rem;
+  }
+
+  .key-card__price-val {
+    font-size: 1.25rem;
+  }
+
+  .key-card__speed-tag {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.4rem;
+  }
+
+  .key-card__speed-tag svg {
+    display: none;
+  }
+
+  .key-card__links-row {
+    gap: 0.35rem;
+  }
+
+  .key-card__call-link {
+    font-size: 0.72rem;
+    padding: 0.45rem 0.5rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .key-card__call-link svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .key-card__address-link {
+    font-size: 0.72rem;
+    padding: 0.45rem 0.45rem;
+    white-space: nowrap;
+  }
+
+  .catalog-view-bar {
+    justify-content: center;
+  }
+
+  .view-switch-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

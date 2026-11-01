@@ -291,6 +291,32 @@
           </div>
         </div>
 
+                <!-- Переключатель вида: Карусель / Сетка всех ключей -->
+        <div class="catalog-view-bar">
+          <div class="catalog-view-switcher" role="tablist" aria-label="Переключение отображения ключей">
+            <button type="button" class="view-switch-btn is-active" id="btnViewCarousel" data-view="carousel" role="tab" aria-selected="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                <line x1="8" y1="6" x2="8" y2="18"></line>
+                <line x1="16" y1="6" x2="16" y2="18"></line>
+              </svg>
+              <span>Карусель (по 2)</span>
+            </button>
+            <button type="button" class="view-switch-btn" id="btnViewGrid" data-view="grid" role="tab" aria-selected="false">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+              </svg>
+              <span>Все ключи плиткой</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Контейнер сетки (для режима Все ключи плиткой) -->
+        <div class="catalog-grid" id="catalogGrid" style="display: none;"></div>
+
         <!-- Контейнер карусели со стрелками -->
         <div class="carousel-container">
           <button type="button" class="carousel-arrow carousel-arrow--left" id="prevKeyBtn" aria-label="Предыдущий ключ (стрелка влево)">
