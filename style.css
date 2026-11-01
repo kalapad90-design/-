@@ -477,9 +477,26 @@ button {
   background-color: var(--color-white);
   border: 1.5px solid var(--color-gray-200);
   border-radius: var(--radius-xl);
-  padding: 2rem;
+  padding: 1.75rem 2rem;
   box-shadow: var(--shadow-md);
   position: relative;
+  overflow: hidden;
+}
+
+.hero-workshop-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%0A%20%20%3C!--%20Key%201%20(Top%20Left)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(30%2C%2025)%20rotate(-20)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.32%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%2216%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%225%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M40%2040%20L76%2076%20L68%2084%20L58%2074%20L52%2080%20L44%2072%20L50%2066%20Z%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Lock%201%20(Top%20Right)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(160%2C%2020)%20rotate(15)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.30%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2246%22%20r%3D%2222%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M24%2030%20V18%20A12%2012%200%200%201%2048%2018%20V30%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2242%22%20r%3D%224%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%20%20%3Cpolygon%20points%3D%2233%2C42%2039%2C42%2041%2C54%2031%2C54%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Clock%201%20(Center)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(95%2C%2085)%20rotate(-5)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.32%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2226%22%2F%3E%0A%20%20%20%20%3Cpolyline%20points%3D%2236%2C18%2036%2C36%2048%2C44%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Key%202%20(Bottom%20Right)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(165%2C%20145)%20rotate(35)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.32%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%2216%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%225%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M40%2040%20L76%2076%20L68%2084%20L58%2074%20L52%2080%20L44%2072%20L50%2066%20Z%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Lock%202%20(Bottom%20Left)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(25%2C%20155)%20rotate(-10)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.30%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2246%22%20r%3D%2222%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M24%2030%20V18%20A12%2012%200%200%201%2048%2018%20V30%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2242%22%20r%3D%224%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%20%20%3Cpolygon%20points%3D%2233%2C42%2039%2C42%2041%2C54%2031%2C54%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Clock%202%20(Far%20Right%20Edge)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(195%2C%2080)%20rotate(20)%20scale(0.38)%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.28%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2226%22%2F%3E%0A%20%20%20%20%3Cpolyline%20points%3D%2236%2C18%2036%2C36%2048%2C44%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Sparkles%20%26%20Doodles%20(Telegram%20Style)%20--%3E%0A%20%20%3Cpath%20d%3D%22M110%2032%20L112%2040%20L120%2042%20L112%2044%20L110%2052%20L108%2044%20L100%2042%20L108%2040%20Z%22%20fill%3D%22%232563EB%22%20opacity%3D%220.25%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M45%20105%20L47%20111%20L53%20113%20L47%20115%20L45%20121%20L43%20115%20L37%20113%20L43%20111%20Z%22%20fill%3D%22%23475569%22%20opacity%3D%220.25%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M125%20185%20L127%20192%20L134%20194%20L127%20196%20L125%20203%20L123%20196%20L116%20194%20L123%20192%20Z%22%20fill%3D%22%232563EB%22%20opacity%3D%220.25%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2275%22%20cy%3D%2250%22%20r%3D%222%22%20fill%3D%22%23475569%22%20opacity%3D%220.28%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22155%22%20cy%3D%22115%22%20r%3D%222%22%20fill%3D%22%232563EB%22%20opacity%3D%220.28%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2285%22%20cy%3D%22165%22%20r%3D%222%22%20fill%3D%22%23475569%22%20opacity%3D%220.28%22%2F%3E%0A%3C%2Fsvg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-workshop-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-workshop-card__top {
