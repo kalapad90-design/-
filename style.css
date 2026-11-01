@@ -487,9 +487,9 @@ button {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%0A%20%20%3C!--%20Key%201%20(Top%20Left)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(30%2C%2025)%20rotate(-20)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.32%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%2216%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%225%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M40%2040%20L76%2076%20L68%2084%20L58%2074%20L52%2080%20L44%2072%20L50%2066%20Z%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Lock%201%20(Top%20Right)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(160%2C%2020)%20rotate(15)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.30%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2246%22%20r%3D%2222%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M24%2030%20V18%20A12%2012%200%200%201%2048%2018%20V30%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2242%22%20r%3D%224%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%20%20%3Cpolygon%20points%3D%2233%2C42%2039%2C42%2041%2C54%2031%2C54%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Clock%201%20(Center)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(95%2C%2085)%20rotate(-5)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.32%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2226%22%2F%3E%0A%20%20%20%20%3Cpolyline%20points%3D%2236%2C18%2036%2C36%2048%2C44%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Key%202%20(Bottom%20Right)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(165%2C%20145)%20rotate(35)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%232563EB%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.32%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%2216%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2228%22%20r%3D%225%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M40%2040%20L76%2076%20L68%2084%20L58%2074%20L52%2080%20L44%2072%20L50%2066%20Z%22%20fill%3D%22%232563EB%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Lock%202%20(Bottom%20Left)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(25%2C%20155)%20rotate(-10)%20scale(0.45)%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.30%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2246%22%20r%3D%2222%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M24%2030%20V18%20A12%2012%200%200%201%2048%2018%20V30%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2242%22%20r%3D%224%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%20%20%3Cpolygon%20points%3D%2233%2C42%2039%2C42%2041%2C54%2031%2C54%22%20fill%3D%22%23475569%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Clock%202%20(Far%20Right%20Edge)%20--%3E%0A%20%20%3Cg%20transform%3D%22translate(195%2C%2080)%20rotate(20)%20scale(0.38)%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%224.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%220.28%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2226%22%2F%3E%0A%20%20%20%20%3Cpolyline%20points%3D%2236%2C18%2036%2C36%2048%2C44%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3C!--%20Sparkles%20%26%20Doodles%20(Telegram%20Style)%20--%3E%0A%20%20%3Cpath%20d%3D%22M110%2032%20L112%2040%20L120%2042%20L112%2044%20L110%2052%20L108%2044%20L100%2042%20L108%2040%20Z%22%20fill%3D%22%232563EB%22%20opacity%3D%220.25%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M45%20105%20L47%20111%20L53%20113%20L47%20115%20L45%20121%20L43%20115%20L37%20113%20L43%20111%20Z%22%20fill%3D%22%23475569%22%20opacity%3D%220.25%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M125%20185%20L127%20192%20L134%20194%20L127%20196%20L125%20203%20L123%20196%20L116%20194%20L123%20192%20Z%22%20fill%3D%22%232563EB%22%20opacity%3D%220.25%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2275%22%20cy%3D%2250%22%20r%3D%222%22%20fill%3D%22%23475569%22%20opacity%3D%220.28%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22155%22%20cy%3D%22115%22%20r%3D%222%22%20fill%3D%22%232563EB%22%20opacity%3D%220.28%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2285%22%20cy%3D%22165%22%20r%3D%222%22%20fill%3D%22%23475569%22%20opacity%3D%220.28%22%2F%3E%0A%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%232563EB' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.08'%3E%3Cg transform='translate(25%2C 20) rotate(-35 12 12)'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='M13 13 L24 24 L21 27 L18 24 L16 26 L14 24'/%3E%3C/g%3E%3Cg transform='translate(108%2C 25)'%3E%3Crect x='2' y='8' width='16' height='12' rx='3'/%3E%3Cpath d='M5 8 V5 a5 5 0 0 1 10 0 v3'/%3E%3Ccircle cx='10' cy='13' r='1.5'/%3E%3Cpath d='M10 14.5 v2.5'/%3E%3C/g%3E%3Cg transform='translate(30%2C 95)'%3E%3Ccircle cx='10' cy='10' r='9'/%3E%3Cpolyline points='10 4 10 10 14 10'/%3E%3C/g%3E%3Cg transform='translate(112%2C 105) rotate(25 10 10)'%3E%3Ccircle cx='8' cy='8' r='5'/%3E%3Ccircle cx='8' cy='8' r='1.8'/%3E%3Cpath d='M11 11 L20 20 L18 22 L15 19 L13 21'/%3E%3C/g%3E%3Cpath d='M80 20 Q80 26 86 26 Q80 26 80 32 Q80 26 74 26 Q80 26 80 20 Z'/%3E%3Cpath d='M85 130 Q85 135 90 135 Q85 135 85 140 Q85 135 80 135 Q85 135 85 130 Z'/%3E%3Cpath d='M148 70 Q148 74 152 74 Q148 74 148 78 Q148 74 144 74 Q148 74 148 70 Z'/%3E%3Cpath d='M14 62 Q14 66 18 66 Q14 66 14 70 Q14 66 10 66 Q14 66 14 62 Z'/%3E%3Ccircle cx='70' cy='75' r='1.2' fill='%232563EB'/%3E%3Ccircle cx='95' cy='70' r='1.2' fill='%232563EB'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 200px 200px;
+  background-size: 140px 140px;
   pointer-events: none;
   z-index: 0;
 }
@@ -731,48 +731,48 @@ button {
 }
 
 /* Технический заголовок карточки вместо картинок */
-.key-card__tech-header {
-  background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-blue-50) 100%);
-  border-bottom: 1.5px solid var(--color-gray-200);
-  padding: 1.15rem 1rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Превью и фото ключа в карточке (чистый аккуратный дизайн) */
+.key-card__thumb-box {
+  background-color: var(--color-white);
+  padding: 1.25rem 1.15rem 0.5rem;
+  border-bottom: 1px solid var(--color-gray-100);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.key-card__icon-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background-color: var(--color-white);
-  border: 1px solid var(--color-blue-200);
-  color: var(--color-blue-600);
+.key-card__img-wrap {
+  width: 100%;
+  height: 195px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.1);
-  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
-.key-card:hover .key-card__icon-badge {
-  transform: scale(1.08);
-  background-color: var(--color-blue-600);
-  color: var(--color-white);
+.key-card__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
 }
 
-.key-card__icon-badge svg {
-  width: 22px;
-  height: 22px;
+.key-card:hover .key-card__img {
+  transform: scale(1.06);
 }
 
-.key-card__badge-meta {
+.key-card__badge-row {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.35rem;
+  justify-content: flex-start;
+  margin-top: 0.65rem;
 }
-
 .key-card__time-tag {
   display: inline-flex;
   align-items: center;
@@ -1111,13 +1111,17 @@ button {
 
 .osm-map-frame-container {
   width: 100%;
-  height: 320px;
+  height: 350px;
   background-color: #E5E7EB;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
 .osm-map-frame {
   width: 100%;
-  height: 100%;
+  height: calc(100% + 36px);
+  margin-bottom: -36px;
   border: none;
   filter: hue-rotate(130deg) saturate(0.85) brightness(1.02);
 }
@@ -1129,13 +1133,16 @@ button {
   border: 1px solid var(--color-gray-200);
   margin-block: 0.5rem 0.75rem;
   box-shadow: var(--shadow-xs);
-  height: 150px;
+  height: 155px;
+  position: relative;
 }
 
 .osm-mini-frame {
   display: block;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 36px);
+  margin-bottom: -36px;
+  border: none;
 }
 
 .osm-map-footer {

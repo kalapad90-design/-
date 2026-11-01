@@ -161,11 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getVisibleCount() {
     const width = window.innerWidth;
-    if (width < 560) return 1;
-    if (width < 860) return 2;
-    if (width < 1120) return 3;
-    if (width < 1360) return 4;
-    return 5;
+    if (width < 600) return 1;
+    if (width < 900) return 2;
+    if (width < 1200) return 3;
+    return 4; // Максимум 4 карточки на десктопе для солидной ширины
   }
 
   const categoryIcons = {
@@ -186,18 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
     card.setAttribute('data-category', key.category);
     card.setAttribute('data-index', absoluteIndex);
 
-    const catIcon = categoryIcons[key.category] || categoryIcons['Квартирные'];
-    const idBadge = String(key.id).padStart(2, '0');
-
     card.innerHTML = `
       <div class="key-card__thumb-box">
-        <div class="key-card__tech-header">
-          <span class="key-card__tech-id">#${idBadge}</span>
-          <span class="key-card__icon-badge" title="${key.category}">
-            ${catIcon}
-          </span>
-        </div>
-
         <div class="key-card__img-wrap">
           <img src="${key.image}" alt="${key.name}" loading="lazy" class="key-card__img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'300\\' height=\\'220\\' viewBox=\\'0 0 300 220\\'><rect width=\\'300\\' height=\\'220\\' fill=\\'%23f1f5f9\\'/><text x=\\'50%\\' y=\\'50%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%2394a3b8\\' font-family=\\'sans-serif\\' font-size=\\'14\\'>${key.name}</text></svg>'">
         </div>
@@ -382,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (counterDisplay) {
       const startKey = String(currentIndex + 1).padStart(2, '0');
       const endKey = String(Math.min(total, currentIndex + visibleCount)).padStart(2, '0');
-      counterDisplay.innerHTML = `Показаны: <span>#${startKey} — #${endKey}</span> из ${total}`;
+      counterDisplay.innerHTML = `Показаны <span>${startKey} — ${endKey}</span> из ${total}`;
     }
 
     updateDots();
