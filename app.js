@@ -1,44 +1,145 @@
 /**
- * МАСТЕР КЛЮЧ — г. Красноярск, ул. Щорса, 43
+ * МАСТЕР КЛЮЧ — г. Красноярск
  * Скрипт сайта:
- * 1. Переключатель тёмной / светлой темы (в правом верхнем углу, с сохранением в localStorage)
- * 2. Мультивыбор категорий над каруселью (динамическая фильтрация 20 моделей)
- * 3. Горизонтальная карусель: адаптивное количество карточек (1 на мобильных, 5 на десктопе),
+ * 1. Сканер рабочего времени (Пн-Вс 09:00 - 20:00 UTC+7) с живым обновлением "Мы открыты / Мы закрыты"
+ * 2. Копирование телефонных номеров в буфер обмена по клику на иконку
+ * 3. Мультивыбор категорий над каруселью (динамическая фильтрация 20 моделей)
+ * 4. Горизонтальная карусель: адаптивное количество карточек (1 на мобильных, 5 на десктопе),
  *    стрелки по бокам, размытие за пределами строки, touch-свайп.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  /* ========================================================================
-     1. ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ (СВЕТЛАЯ / ТЁМНАЯ) С СОХРАНЕНИЕМ
-     ======================================================================== */
-  const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const STORAGE_KEY = 'master_key_theme';
+  // Строго светлая тема: очищаем старые сохранённые ключи
+  document.documentElement.classList.remove('dark-theme');
+  try {
+    localStorage.removeItem('master_key_theme');
+  } catch (e) {
+    /* ignore */
+  }
 
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-    } else {
-      document.documentElement.classList.remove('dark-theme');
+  /* ========================================================================
+     1. СКАНЕР ВРЕМЕНИ РАБОТЫ (КРАСНОЯРСК UTC+7)
+     ======================================================================== */
+  function updateWorkshopStatus() {
+    try {
+      const now = new Date();
+      // Определяем текущее время в часовом поясе Красноярска
+      const krasnoyarskTimeStr = now.toLocaleTimeString('en-GB', {
+        timeZone: 'Asia/Krasnoyarsk',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      });
+
+      const [hStr, mStr] = krasnoyarskTimeStr.split(':');
+      const hour = parseInt(hStr, 10);
+      const minute = parseInt(mStr, 10);
+      const currentMinutes = hour * 60 + minute;
+
+      const openMinutes = 9 * 60;   // 09:00
+      const closeMinutes = 20 * 60; // 20:00
+
+      const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+
+      // 1. Статус на карте (вместо ссылки OpenStreetMap)
+      const mapLiveStatus = document.getElementById('mapLiveStatus');
+      if (mapLiveStatus) {
+        if (isOpen) {
+          mapLiveStatus.className = 'map-status-pill is-open';
+          mapLiveStatus.innerHTML = `
+            <span class="status-pulse-dot"></span>
+            <span class="status-status-text">Мы открыты</span>
+            <span class="status-hours-sub">до 20:00</span>
+          `;
+        } else {
+          mapLiveStatus.className = 'map-status-pill is-closed';
+          mapLiveStatus.innerHTML = `
+            <span class="status-pulse-dot status-pulse-dot--closed"></span>
+            <span class="status-status-text">Мы закрыты</span>
+            <span class="status-hours-sub">откроемся в 09:00</span>
+          `;
+        }
+      }
+
+      // 2. Статус в карточке мастерской в Hero
+      const heroLiveStatus = document.getElementById('heroLiveStatus');
+      if (heroLiveStatus) {
+        if (isOpen) {
+          heroLiveStatus.className = 'hero-workshop-card__status is-open';
+          heroLiveStatus.innerHTML = `
+            <span class="status-pulse-dot"></span>
+            <span class="hero-status-text">Мастерская открыта</span>
+          `;
+        } else {
+          heroLiveStatus.className = 'hero-workshop-card__status is-closed';
+          heroLiveStatus.innerHTML = `
+            <span class="status-pulse-dot status-pulse-dot--closed"></span>
+            <span class="hero-status-text">Мастерская закрыта</span>
+          `;
+        }
+      }
+
+      // 3. Точка статуса в шапке
+      const headerStatusDot = document.querySelector('.header__status-dot');
+      if (headerStatusDot) {
+        if (isOpen) {
+          headerStatusDot.classList.remove('status-dot--closed');
+          headerStatusDot.title = 'Мастерская открыта';
+        } else {
+          headerStatusDot.classList.add('status-dot--closed');
+          headerStatusDot.title = 'Мастерская закрыта до 09:00';
+        }
+      }
+    } catch (err) {
+      console.warn('Status time check error:', err);
     }
   }
 
-  // Считываем сохранённую тему или системные настройки
-  const savedTheme = localStorage.getItem(STORAGE_KEY);
-  if (savedTheme) {
-    applyTheme(savedTheme);
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    applyTheme('dark');
-  }
+  // Запуск сканера времени
+  updateWorkshopStatus();
+  setInterval(updateWorkshopStatus, 30000);
 
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark-theme');
-      localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+  /* ========================================================================
+     2. КОПИРОВАНИЕ НОМЕРОВ ТЕЛЕФОНОВ
+     ======================================================================== */
+  function initCopyButtons() {
+    const copyBtns = document.querySelectorAll('.btn-copy-phone');
+    copyBtns.forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const phone = btn.getAttribute('data-phone') || '';
+        if (!phone) return;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(phone);
+          } else {
+            // Fallback для старых окружений
+            const temp = document.createElement('input');
+            temp.value = phone;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+          }
+
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.classList.remove('copied');
+          }, 1600);
+        } catch (err) {
+          console.error('Copy failed:', err);
+        }
+      });
     });
   }
 
+  initCopyButtons();
+
   /* ========================================================================
-     2. КАТАЛОГ И ИКОНКИ КАТЕГОРИЙ
+     3. КАТАЛОГ И ИКОНКИ КАТЕГОРИЙ
      ======================================================================== */
   const ORIGINAL_CATALOG = window.KEYS_CATALOG || [];
   let currentCatalog = [...ORIGINAL_CATALOG];
@@ -52,76 +153,58 @@ document.addEventListener('DOMContentLoaded', () => {
   const filtersContainer = document.getElementById('catalogFilters');
   const resetFiltersBtn = document.getElementById('resetFiltersBtn');
 
-  if (!track || ORIGINAL_CATALOG.length === 0) return;
-
-  const CATEGORY_ICONS = {
-    'Квартирные': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-      <polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>`,
-    'Автомобильные': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="11" width="18" height="10" rx="3"/>
-      <path d="M5 11l2-6h10l2 6"/>
-      <circle cx="7.5" cy="16.5" r="1.5"/>
-      <circle cx="16.5" cy="16.5" r="1.5"/>
-    </svg>`,
-    'Сейфовые': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="16" rx="2"/>
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M12 7v2"/>
-      <path d="M12 15v2"/>
-      <path d="M7 12h2"/>
-      <path d="M15 12h2"/>
-    </svg>`,
-    'Домофонные': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-      <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-      <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-      <line x1="12" y1="20" x2="12.01" y2="20"/>
-    </svg>`,
-    'Специальные': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-    </svg>`
-  };
-
-  /* ========================================================================
-     3. АДАПТИВНОЕ КОЛИЧЕСТВО ВИДИМЫХ КЛЮЧЕЙ В СТРОКЕ
-     ======================================================================== */
-  function getVisibleCount() {
-    const w = window.innerWidth;
-    if (w < 1000) return 3; // На телефонах и планшетах — ровно по 3 ключа в списке!
-    return 5;               // На десктопах — ровно 5 ключей
-  }
+  if (!track || !viewport) return;
 
   let currentIndex = 0;
   let isAnimating = false;
   let bufferCount = 5;
 
-  /* ========================================================================
-     4. ГЕНЕРАЦИЯ HTML КАРТОЧКИ КЛЮЧА
-     ======================================================================== */
-  function createCardElement(key, virtualIndex) {
-    const card = document.createElement('article');
-    card.className = 'key-card';
-    card.setAttribute('data-key-id', key.id);
-    card.setAttribute('data-virtual-index', virtualIndex);
-    card.setAttribute('aria-label', `${key.code}: ${key.name}`);
+  function getVisibleCount() {
+    const width = window.innerWidth;
+    if (width < 560) return 1;
+    if (width < 860) return 2;
+    if (width < 1120) return 3;
+    if (width < 1360) return 4;
+    return 5;
+  }
 
-    const iconSvg = CATEGORY_ICONS[key.category] || CATEGORY_ICONS['Квартирные'];
+  const categoryIcons = {
+    'Квартирные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    'Автомобильные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="3"/><path d="M5 11l2-6h10l2 6"/><circle cx="7.5" cy="16.5" r="1.5"/><circle cx="16.5" cy="16.5" r="1.5"/></svg>',
+    'Сейфовые': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 7v2"/><path d="M12 15v2"/><path d="M7 12h2"/><path d="M15 12h2"/></svg>',
+    'Домофонные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>',
+    'Специальные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
+  };
+
+  /* ========================================================================
+     4. ГЕНЕРАЦИЯ КАРТОЧКИ КЛЮЧА (БЕЗ СПАМА АДРЕСА)
+     ======================================================================== */
+  function createCardElement(key, absoluteIndex) {
+    const card = document.createElement('div');
+    card.className = 'key-card';
+    card.setAttribute('data-id', key.id);
+    card.setAttribute('data-category', key.category);
+    card.setAttribute('data-index', absoluteIndex);
+
+    const catIcon = categoryIcons[key.category] || categoryIcons['Квартирные'];
+    const idBadge = String(key.id).padStart(2, '0');
 
     card.innerHTML = `
-      <div class="key-card__tech-header">
-        <div class="key-card__icon-badge">
-          ${iconSvg}
+      <div class="key-card__thumb-box">
+        <div class="key-card__tech-header">
+          <span class="key-card__tech-id">#${idBadge}</span>
+          <span class="key-card__icon-badge" title="${key.category}">
+            ${catIcon}
+          </span>
         </div>
-        <div class="key-card__badge-meta">
-          <span class="key-card__code">${key.code}</span>
+
+        <div class="key-card__img-wrap">
+          <img src="${key.image}" alt="${key.name}" loading="lazy" class="key-card__img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'300\\' height=\\'220\\' viewBox=\\'0 0 300 220\\'><rect width=\\'300\\' height=\\'220\\' fill=\\'%23f1f5f9\\'/><text x=\\'50%\\' y=\\'50%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' fill=\\'%2394a3b8\\' font-family=\\'sans-serif\\' font-size=\\'14\\'>${key.name}</text></svg>'">
+        </div>
+
+        <div class="key-card__badge-row">
           <span class="key-card__time-tag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             ${key.time}
           </span>
         </div>
@@ -140,21 +223,23 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="key-card__price-val">${key.priceFormatted}</span>
         </div>
 
-        <div class="key-card__address-box">
-          <div class="key-card__address-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
+        <div class="key-card__action-box">
+          <div class="key-card__speed-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span>Где сделать / заказать:</span>
+            <span>Нарезка от 3 минут прямо при вас</span>
           </div>
-          <div class="key-card__address-val">${key.address}</div>
           <div class="key-card__links-row">
-            <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" class="key-card__address-link" title="Открыть в 2ГИС">
-              Карта 2ГИС →
-            </a>
             <a href="tel:+79639569122" class="key-card__call-link" title="Позвонить мастеру">
-              Позвонить
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span>Позвонить</span>
+            </a>
+            <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" class="key-card__address-link" title="Открыть в 2ГИС">
+              2ГИС →
             </a>
           </div>
         </div>
@@ -247,7 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gap = window.innerWidth < 560 ? 8 : 16;
     const total = currentCatalog.length;
 
-    // Вычисляем ширину карточки под ширину экрана
     const cardWidth = Math.max(80, Math.floor((viewportWidth - (gap * (visibleCount - 1))) / visibleCount));
 
     const cards = track.querySelectorAll('.key-card');
@@ -320,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 450);
   }
 
-  // Стрелка влево: от первого ключа переходит сразу к последнему!
+  // Стрелка влево: от первого ключа переходит сразу к последнему
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       const total = currentCatalog.length;
@@ -456,7 +540,6 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedCategories.add(cat);
       }
 
-      // Если выбраны все или ни одна — сбрасываем в "Все"
       if (selectedCategories.size === categoryChips.length) {
         selectedCategories.clear();
       }

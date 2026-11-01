@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>МАСТЕР КЛЮЧ — Изготовление ключей в Красноярске | ул. Щорса, 43</title>
-  <meta name="description" content="Мастерская по изготовлению ключей в Красноярске на ул. Щорса, 43. 20 моделей ключей: квартирные, автомобильные с чипом, домофонные брелоки, сейфовые. Нарезка от 3 минут. 2ГИС.">
+  <title>МАСТЕР КЛЮЧ — Изготовление ключей в Красноярске</title>
+  <meta name="description" content="Мастерская по изготовлению ключей в Красноярске. 20 моделей ключей: квартирные, автомобильные с чипом, домофонные брелоки, сейфовые. Нарезка от 3 минут. 2ГИС.">
   
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="apple-touch-icon" href="assets/logo.svg">
@@ -13,24 +13,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
 
   <!-- ========================================================================
-       УЛУЧШЕННАЯ ШАПКА САЙТА (БЕЗ ВЕРХНЕГО БАРА)
+       ШАПКА САЙТА (СВЕТЛАЯ ТЕМА)
        ======================================================================== -->
   <header class="site-header" id="header">
     <div class="container header__content">
       <a href="#" class="brand-logo" aria-label="МАСТЕР КЛЮЧ на главную">
         <div class="brand-logo__text">
-          <span class="brand-logo__title">МАСТЕР <span class="brand-logo__accent">КЛ<span class="yu-lock-char" title="Ю с дверным замком" aria-label="Ю">Ю<svg class="yu-keyhole-inner" viewBox="0 0 10 14" aria-hidden="true"><circle cx="5" cy="4" r="2.2" fill="currentColor"/><polygon points="3.6,4.5 6.4,4.5 7.2,11.5 2.8,11.5" fill="currentColor"/></svg></span>Ч</span></span>
+          <span class="brand-logo__title">МАСТЕР <span class="brand-logo__accent">КЛЮЧ</span></span>
           <span class="brand-logo__address">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            Красноярск, ул. Щорса, 43
+            Красноярск
           </span>
         </div>
       </a>
@@ -38,8 +38,7 @@
       <nav class="main-nav" aria-label="Основное меню">
         <ul class="nav-list">
           <li><a href="#catalog" class="nav-link">Каталог 20 ключей</a></li>
-          <li><a href="#location" class="nav-link">Адрес и 2ГИС</a></li>
-          <li><a href="#faq" class="nav-link">Вопросы и ответы</a></li>
+          <li><a href="#location" class="nav-link">Адрес и карта</a></li>
         </ul>
       </nav>
 
@@ -52,7 +51,19 @@
         </a>
 
         <div class="header__phone-box">
-          <a href="tel:+79639569122" class="header__phone-link">+7 (963) 956-91-22</a>
+          <div class="header__phone-row">
+            <a href="tel:+79639569122" class="header__phone-link">+7 (963) 956-91-22</a>
+            <button type="button" class="btn-copy-phone" data-phone="+79639569122" aria-label="Скопировать номер" title="Скопировать номер">
+              <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg class="copied-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span class="copy-tooltip">Скопировано!</span>
+            </button>
+          </div>
           <span class="header__hours-tag">
             <span class="header__status-dot"></span>
             Пн–Вс: 09:00 — 20:00
@@ -66,24 +77,6 @@
           </svg>
           <span>2ГИС</span>
         </a>
-
-        <!-- Кнопка смены темы (справа в верхнем углу) -->
-        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Сменить тему оформления" title="Светлая / Тёмная тема">
-          <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-          <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
       </div>
     </div>
   </header>
@@ -91,14 +84,14 @@
   <main>
 
     <!-- ========================================================================
-         HERO SECTION (Красноярск, ул. Щорса, 43)
+         HERO SECTION
          ======================================================================== -->
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__content">
           <div class="hero__badge">
             <span class="hero__badge-dot"></span>
-            <span>г. Красноярск, ул. Щорса, 43 • Нарезка от 3 минут</span>
+            <span>г. Красноярск • Нарезка от 3 минут • Все ключи в наличии</span>
           </div>
 
           <h1 class="hero__title">
@@ -137,20 +130,24 @@
               <span class="hero__feature-desc">Все заготовки в мастерской</span>
             </div>
             <div class="hero__feature-item">
-              <span class="hero__feature-val">ул. Щорса <span>43</span></span>
-              <span class="hero__feature-desc">Удобный подъезд и парковка</span>
+              <span class="hero__feature-val">Гарантия <span>100%</span></span>
+              <span class="hero__feature-desc">Точная нарезка на цифровых станках</span>
             </div>
           </div>
         </div>
 
         <div class="hero__aside">
-          <div class="hero-workshop-card">
+          <!-- Карточка мастерской с фоном TG Doodle (ключ, замок, часы) -->
+          <div class="hero-workshop-card" id="workshopCard">
             <div class="hero-workshop-card__top">
-              <span class="hero-workshop-card__status">Мастерская открыта</span>
+              <span class="hero-workshop-card__status is-open" id="heroLiveStatus">
+                <span class="status-pulse-dot"></span>
+                <span class="hero-status-text">Мастерская открыта</span>
+              </span>
               <span style="font-size: 0.8125rem; font-weight: 700; color: var(--color-gray-500);">г. Красноярск</span>
             </div>
 
-            <h3 class="hero-workshop-card__title">Мастерская на Щорса</h3>
+            <h3 class="hero-workshop-card__title">Наша мастерская</h3>
             <div class="hero-workshop-card__address">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -166,26 +163,54 @@
               </div>
               <div class="hero-workshop-card__info-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span><strong>Телефоны:</strong> <a href="tel:+79639569122">+7 (963) 956-91-22</a>, <a href="tel:+79059708204">+7 (905) 970-82-04</a></span>
+                <div class="phone-inline-group">
+                  <strong>Телефоны:</strong>
+                  <span class="phone-item-wrap">
+                    <a href="tel:+79639569122">+7 (963) 956-91-22</a>
+                    <button type="button" class="btn-copy-phone" data-phone="+79639569122" aria-label="Скопировать номер" title="Скопировать номер">
+                      <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                      <svg class="copied-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span class="copy-tooltip">Скопировано!</span>
+                    </button>
+                  </span>,
+                  <span class="phone-item-wrap">
+                    <a href="tel:+79059708204">+7 (905) 970-82-04</a>
+                    <button type="button" class="btn-copy-phone" data-phone="+79059708204" aria-label="Скопировать номер" title="Скопировать номер">
+                      <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                      <svg class="copied-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span class="copy-tooltip">Скопировано!</span>
+                    </button>
+                  </span>
+                </div>
               </div>
             </div>
 
-            <!-- Мини-карта в карточке мастерской -->
+            <!-- Мини-карта в карточке мастерской с обрезкой OSM ватермарки -->
             <div class="hero-map-mini">
               <iframe 
                 src="https://www.openstreetmap.org/export/embed.html?bbox=92.943767%2C55.984802%2C92.963767%2C55.996802&amp;layer=mapnik&amp;marker=55.990802%2C92.953767"
                 width="100%" 
-                height="150" 
+                height="190" 
                 frameborder="0" 
                 scrolling="no" 
                 marginheight="0" 
                 marginwidth="0" 
-                title="Мастерская на карте" 
+                title="Наша мастерская на карте" 
                 class="osm-map-frame osm-mini-frame">
               </iframe>
             </div>
 
-            <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" class="btn-2gis" style="width: 100%; justify-content: center;">
+            <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" class="btn-2gis" style="width: 100%; justify-content: center; margin-top: 1rem;">
               <span>Открыть карточку в 2ГИС</span>
             </a>
           </div>
@@ -195,8 +220,6 @@
 
     <!-- ========================================================================
          ГОРИЗОНТАЛЬНАЯ КАРУСЕЛЬ 20 КЛЮЧЕЙ
-         По 5 ключей в ряду, стрелки по бокам, левая стрелка переходит к 20 ключу,
-         ключи за пределами строки блюрятся
          ======================================================================== -->
     <section class="carousel-section" id="catalog">
       <div class="container">
@@ -205,18 +228,18 @@
           <span class="section-tag">Каталог моделей</span>
           <h2 class="section-title">Каталог из <span>20 моделей ключей</span></h2>
           <p class="section-desc">
-            В карусели отображается по 5 ключей. Выбирайте одну или несколько категорий для фильтрации списка. Под каждым ключом указана стоимость и адрес мастерской.
+            В карусели отображается по 5 ключей. Выбирайте одну или несколько категорий для фильтрации списка. Под каждым ключом указана точная стоимость и время изготовления.
           </p>
         </div>
 
-        <!-- Мультивыбор категорий с иконками над списком -->
+        <!-- Мультивыбор категорий -->
         <div class="catalog-filters-wrapper">
           <div class="catalog-filters-header">
             <span class="catalog-filters-title">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
                 <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
               </svg>
-              Фильтр по категориям (мультивыбор):
+              Фильтр по категориям:
             </span>
             <button type="button" class="catalog-filters-reset" id="resetFiltersBtn">Сбросить фильтры</button>
           </div>
@@ -271,23 +294,20 @@
           </div>
         </div>
 
-        <!-- Контейнер карусели с кнопками-стрелками по бокам -->
+        <!-- Контейнер карусели со стрелками -->
         <div class="carousel-container">
-          <!-- Левая стрелка: при нажатии перемещает к 20-му ключу -->
           <button type="button" class="carousel-arrow carousel-arrow--left" id="prevKeyBtn" aria-label="Предыдущий ключ (стрелка влево)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
 
-          <!-- Окно просмотра (Viewport) с боковыми градиентами размытия -->
           <div class="carousel-viewport" id="carouselViewport">
             <div class="carousel-track" id="carouselTrack">
-              <!-- 20 уникальных карточек ключей генерируются через app.js -->
+              <!-- Карточки ключей генерируются через app.js -->
             </div>
           </div>
 
-          <!-- Правая стрелка -->
           <button type="button" class="carousel-arrow carousel-arrow--right" id="nextKeyBtn" aria-label="Следующий ключ (стрелка вправо)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
@@ -295,7 +315,6 @@
           </button>
         </div>
 
-        <!-- Нижняя панель: счетчик и индикаторы -->
         <div class="carousel-indicator-bar">
           <div class="carousel-counter" id="carouselCounter">
             Показаны ключи: <span>#01 — #05</span> из 20
@@ -309,13 +328,13 @@
     </section>
 
     <!-- ========================================================================
-         РАЗДЕЛ АДРЕС И 2ГИС (г. Красноярск, ул. Щорса, 43)
+         РАЗДЕЛ АДРЕС И КАРТА
          ======================================================================== -->
     <section class="location-section" id="location">
       <div class="container">
         <div class="section-head">
           <span class="section-tag">Где сделать ключ</span>
-          <h2 class="section-title">Мастерская на <span>улице Щорса, 43</span></h2>
+          <h2 class="section-title">Наша <span>мастерская</span></h2>
           <p class="section-desc">
             Красноярск, Кировский район. Удобно доехать на общественном транспорте или автомобиле.
           </p>
@@ -347,8 +366,32 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                   <div>
                     <strong>Телефоны мастера:</strong><br>
-                    <a href="tel:+79639569122" style="font-weight: 700; color: var(--color-blue-600);">+7 (963) 956-91-22</a><br>
-                    <a href="tel:+79059708204" style="font-weight: 700; color: var(--color-blue-600);">+7 (905) 970-82-04</a>
+                    <div class="phone-entry-row">
+                      <a href="tel:+79639569122" style="font-weight: 700; color: var(--color-blue-600);">+7 (963) 956-91-22</a>
+                      <button type="button" class="btn-copy-phone" data-phone="+79639569122" aria-label="Скопировать номер" title="Скопировать номер">
+                        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <svg class="copied-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span class="copy-tooltip">Скопировано!</span>
+                      </button>
+                    </div>
+                    <div class="phone-entry-row">
+                      <a href="tel:+79059708204" style="font-weight: 700; color: var(--color-blue-600);">+7 (905) 970-82-04</a>
+                      <button type="button" class="btn-copy-phone" data-phone="+79059708204" aria-label="Скопировать номер" title="Скопировать номер">
+                        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <svg class="copied-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span class="copy-tooltip">Скопировано!</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
 
@@ -378,7 +421,7 @@
           <!-- Карта OpenStreetMap -->
           <div class="osm-map-card">
             <div class="osm-map-header">
-              <span class="osm-map-tag">Карта OpenStreetMap</span>
+              <span class="osm-map-tag">Мы на карте</span>
               <span class="osm-map-coords">Красноярск, ул. Щорса, 43</span>
             </div>
             
@@ -386,20 +429,24 @@
               <iframe 
                 class="osm-map-frame"
                 width="100%" 
-                height="320" 
+                height="360" 
                 frameborder="0" 
                 scrolling="no" 
                 marginheight="0" 
                 marginwidth="0" 
                 src="https://www.openstreetmap.org/export/embed.html?bbox=92.943767%2C55.984802%2C92.963767%2C55.996802&amp;layer=mapnik&amp;marker=55.990802%2C92.953767"
-                title="OpenStreetMap — ул. Щорса, 43">
+                title="Наша мастерская на карте">
               </iframe>
             </div>
 
             <div class="osm-map-footer">
-              <a href="https://www.openstreetmap.org/?mlat=55.990802&amp;mlon=92.953767#map=17/55.990802/92.953767" target="_blank" rel="noopener" class="osm-open-link">
-                <span>Посмотреть на OpenStreetMap ↗</span>
-              </a>
+              <!-- Индикатор статуса вместо ссылки OpenStreetMap -->
+              <div class="map-status-pill is-open" id="mapLiveStatus" aria-live="polite">
+                <span class="status-pulse-dot"></span>
+                <span class="status-status-text">Мы открыты</span>
+                <span class="status-hours-sub">до 20:00</span>
+              </div>
+
               <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" class="btn-2gis btn-2gis--sm">
                 <span>Открыть в 2ГИС</span>
               </a>
@@ -407,41 +454,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         FAQ
-         ======================================================================== -->
-    <section class="faq-section" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Информация</span>
-          <h2 class="section-title">Часто задаваемые <span>вопросы</span></h2>
-        </div>
-
-        <div class="faq-list">
-          <details class="faq-item" open>
-            <summary class="faq-question">По какому адресу находится мастерская?</summary>
-            <div class="faq-answer">
-              Наша мастерская находится в городе Красноярске по адресу: <strong>улица Щорса, 43</strong>. Вы всегда можете найти нас и проложить маршрут через приложение <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" style="color: var(--color-blue-600); font-weight: 700;">2ГИС</a>.
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-question">Сколько времени занимает изготовление ключа?</summary>
-            <div class="faq-answer">
-              Большинство ключей (квартирные, почтовые, домофонные чипы) нарезаются прямо при вас за 3–5 минут. Автомобильные ключи с чипом и сложные сейфовые замки занимают от 15 до 30 минут.
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-question">Нужно ли предварительно записываться?</summary>
-            <div class="faq-answer">
-              Запись не требуется — мы работаем каждый день с 09:00 до 20:00. Просто приходите с оригиналом ключа по адресу ул. Щорса, 43. Если у вас редкий ключ или сломанный замок, вы можете предварительно уточнить наличие заготовок по телефону: <a href="tel:+79639569122" style="color: var(--color-blue-600); font-weight: 700;">+7 (963) 956-91-22</a>.
-            </div>
-          </details>
-        </div>
       </div>
     </section>
 
@@ -456,7 +468,7 @@
         <div>
           <div class="footer__brand-title">МАСТЕР <span>КЛЮЧ</span></div>
           <p class="footer__brand-text">
-            Мастерская по изготовлению дубликатов ключей в г. Красноярске на ул. Щорса, 43. Нарезка на цифровом ЧПУ оборудовании, качественные заготовки.
+            Мастерская по изготовлению дубликатов ключей в г. Красноярске на ул. Щорса, 43. Нарезка на цифровом оборудовании, качественные заготовки.
           </p>
         </div>
 
@@ -465,8 +477,32 @@
           <ul class="footer__links">
             <li>г. Красноярск, ул. Щорса, 43</li>
             <li>Режим: Пн–Вс 09:00 — 20:00</li>
-            <li><a href="tel:+79639569122">+7 (963) 956-91-22</a></li>
-            <li><a href="tel:+79059708204">+7 (905) 970-82-04</a></li>
+            <li class="footer-phone-item">
+              <a href="tel:+79639569122">+7 (963) 956-91-22</a>
+              <button type="button" class="btn-copy-phone btn-copy-phone--footer" data-phone="+79639569122" aria-label="Скопировать номер" title="Скопировать номер">
+                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg class="copied-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span class="copy-tooltip">Скопировано!</span>
+              </button>
+            </li>
+            <li class="footer-phone-item">
+              <a href="tel:+79059708204">+7 (905) 970-82-04</a>
+              <button type="button" class="btn-copy-phone btn-copy-phone--footer" data-phone="+79059708204" aria-label="Скопировать номер" title="Скопировать номер">
+                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg class="copied-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span class="copy-tooltip">Скопировано!</span>
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -474,7 +510,7 @@
           <div class="footer__col-title">Карты и навигация</div>
           <ul class="footer__links">
             <li>
-              <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" style="color: #86EFAC; font-weight: 600;">
+              <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" class="footer-2gis-link">
                 Открыть мастерскую в 2ГИС →
               </a>
             </li>
@@ -484,12 +520,12 @@
 
       <div class="footer__bottom">
         <div>© 2026 МАСТЕР КЛЮЧ. г. Красноярск, ул. Щорса, 43.</div>
-        <div>20 моделей ключей • Чистые студийные фотографии</div>
+        <div>20 моделей ключей • Быстрая нарезка от 3 минут</div>
       </div>
     </div>
   </footer>
 
   <script src="keys-data.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=2.0"></script>
 </body>
 </html>
