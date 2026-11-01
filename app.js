@@ -1,29 +1,16 @@
-/**
- * МАСТЕР КЛЮЧ — г. Красноярск
- * Скрипт сайта:
- * 1. Сканер рабочего времени (Пн-Вс 09:00 - 20:00 UTC+7) с живым обновлением "Мы открыты / Мы закрыты"
- * 2. Копирование телефонных номеров в буфер обмена по клику на иконку
- * 3. Мультивыбор категорий над каруселью (динамическая фильтрация 20 моделей)
- * 4. Горизонтальная карусель: адаптивное количество карточек (1 на мобильных, 5 на десктопе),
- *    стрелки по бокам, размытие за пределами строки, touch-свайп.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Строго светлая тема: очищаем старые сохранённые ключи
+
   document.documentElement.classList.remove('dark-theme');
   try {
     localStorage.removeItem('master_key_theme');
   } catch (e) {
-    /* ignore */
+    
   }
 
-  /* ========================================================================
-     1. СКАНЕР ВРЕМЕНИ РАБОТЫ (КРАСНОЯРСК UTC+7)
-     ======================================================================== */
   function updateWorkshopStatus() {
     try {
       const now = new Date();
-      // Определяем текущее время в часовом поясе Красноярска
+
       const krasnoyarskTimeStr = now.toLocaleTimeString('en-GB', {
         timeZone: 'Asia/Krasnoyarsk',
         hour: '2-digit',
@@ -36,12 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const minute = parseInt(mStr, 10);
       const currentMinutes = hour * 60 + minute;
 
-      const openMinutes = 9 * 60;   // 09:00
-      const closeMinutes = 20 * 60; // 20:00
+      const openMinutes = 9 * 60;
+      const closeMinutes = 20 * 60;
 
       const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
 
-      // 1. Статус на карте (вместо ссылки OpenStreetMap)
       const mapLiveStatus = document.getElementById('mapLiveStatus');
       if (mapLiveStatus) {
         if (isOpen) {
@@ -61,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 2. Статус в карточке мастерской в Hero
       const heroLiveStatus = document.getElementById('heroLiveStatus');
       if (heroLiveStatus) {
         if (isOpen) {
@@ -79,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 3. Точка статуса в шапке
       const headerStatusDot = document.querySelector('.header__status-dot');
       if (headerStatusDot) {
         if (isOpen) {
@@ -95,13 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Запуск сканера времени
   updateWorkshopStatus();
   setInterval(updateWorkshopStatus, 30000);
 
-  /* ========================================================================
-     2. КОПИРОВАНИЕ НОМЕРОВ ТЕЛЕФОНОВ
-     ======================================================================== */
   function initCopyButtons() {
     const copyBtns = document.querySelectorAll('.btn-copy-phone');
     copyBtns.forEach(btn => {
@@ -116,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (navigator.clipboard && navigator.clipboard.writeText) {
             await navigator.clipboard.writeText(phone);
           } else {
-            // Fallback для старых окружений
+
             const temp = document.createElement('input');
             temp.value = phone;
             document.body.appendChild(temp);
@@ -138,9 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initCopyButtons();
 
-  /* ========================================================================
-     3. КАТАЛОГ И ИКОНКИ КАТЕГОРИЙ
-     ======================================================================== */
   const ORIGINAL_CATALOG = window.KEYS_CATALOG || [];
   let currentCatalog = [...ORIGINAL_CATALOG];
 
@@ -161,10 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getVisibleCount() {
     const width = window.innerWidth;
-    if (width < 340) return 1; // Ультраузкие старые телефоны
-    if (width < 860) return 2; // Мобильные телефоны и планшеты: 2 карточки в ряд!
-    if (width < 1200) return 3; // Средние экраны
-    return 4; // Десктопы: 4 карточки
+    if (width < 340) return 1;
+    if (width < 860) return 2;
+    if (width < 1200) return 3;
+    return 4;
   }
 
   const categoryIcons = {
@@ -175,9 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'Специальные': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
   };
 
-  /* ========================================================================
-     4. ГЕНЕРАЦИЯ КАРТОЧКИ КЛЮЧА (БЕЗ СПАМА АДРЕСА)
-     ======================================================================== */
   function createCardElement(key, absoluteIndex) {
     const card = document.createElement('div');
     card.className = 'key-card';
@@ -238,9 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   }
 
-  /* ========================================================================
-     5. ПОСТРОЕНИЕ ТРЕКА КАРУСЕЛИ (С БУФЕРОМ ДЛЯ БЕСКОНЕЧНОСТИ)
-     ======================================================================== */
   function buildTrack() {
     track.innerHTML = '';
     const total = currentCatalog.length;
@@ -253,19 +224,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     bufferCount = Math.min(total, 5);
 
-    // Левые клоны для зацикливания
     for (let i = total - bufferCount; i < total; i++) {
       const card = createCardElement(currentCatalog[i], i - total);
       track.appendChild(card);
     }
 
-    // Основной список
     for (let i = 0; i < total; i++) {
       const card = createCardElement(currentCatalog[i], i);
       track.appendChild(card);
     }
 
-    // Правые клоны
     for (let i = 0; i < bufferCount; i++) {
       const card = createCardElement(currentCatalog[i], total + i);
       track.appendChild(card);
@@ -275,9 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTrackPosition(false);
   }
 
-  /* ========================================================================
-     6. ТОЧКИ-ИНДИКАТОРЫ
-     ======================================================================== */
   function buildDots() {
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
@@ -312,9 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ========================================================================
-     7. РАСЧЕТ РАЗМЕРОВ И БЛЮР
-     ======================================================================== */
   function calculateDimensions() {
     const visibleCount = getVisibleCount();
     const viewportWidth = viewport.clientWidth;
@@ -352,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     track.style.transform = `translateX(${translateX}px)`;
 
-    // Блюр за пределами видимых карточек
     const visibleCount = getVisibleCount();
     const activeStart = offsetIndex;
     const activeEnd = offsetIndex + visibleCount - 1;
@@ -367,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Счетчик
     if (counterDisplay) {
       const startKey = String(currentIndex + 1).padStart(2, '0');
       const endKey = String(Math.min(total, currentIndex + visibleCount)).padStart(2, '0');
@@ -377,9 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDots();
   }
 
-  /* ========================================================================
-     8. НАВИГАЦИЯ: СТРЕЛКА СЛЕВА ПЕРЕХОДИТ К ПОСЛЕДНЕМУ КЛЮЧУ
-     ======================================================================== */
   function moveToIndex(newIndex) {
     const total = currentCatalog.length;
     if (isAnimating || total === 0) return;
@@ -393,7 +350,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 450);
   }
 
-  // Стрелка влево: от первого ключа переходит сразу к последнему
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       const total = currentCatalog.length;
@@ -418,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Стрелка вправо
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
       const total = currentCatalog.length;
@@ -443,13 +398,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Стрелки на клавиатуре
   window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft' && prevBtn) prevBtn.click();
     if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
   });
 
-  // Touch Swipe для мобильных
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -466,7 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // Ресайз
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
@@ -475,9 +427,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 120);
   });
 
-  /* ========================================================================
-     9. МУЛЬТИВЫБОР КАТЕГОРИЙ (ФИЛЬТРЫ)
-     ======================================================================== */
   const selectedCategories = new Set();
   const allChip = filtersContainer ? filtersContainer.querySelector('.filter-chip--all') : null;
   const categoryChips = filtersContainer ? filtersContainer.querySelectorAll('.filter-chip:not(.filter-chip--all)') : [];
@@ -544,12 +493,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Запуск карусели
   buildTrack();
 
-  /* ========================================================================
-     ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ: КАРУСЕЛЬ / СЕТКА (ВСЕ КЛЮЧИ ПЛИТКОЙ)
-     ======================================================================== */
   const btnViewCarousel = document.getElementById('btnViewCarousel');
   const btnViewGrid = document.getElementById('btnViewGrid');
   const catalogGrid = document.getElementById('catalogGrid');
@@ -611,5 +556,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnViewCarousel) btnViewCarousel.addEventListener('click', () => setViewMode('carousel'));
   if (btnViewGrid) btnViewGrid.addEventListener('click', () => setViewMode('grid'));
+
+  const btnToggleFilters = document.getElementById('btnToggleFilters');
+  const catalogFiltersEl = document.getElementById('catalogFilters');
+  if (btnToggleFilters && catalogFiltersEl) {
+    catalogFiltersEl.classList.add('is-collapsed');
+    btnToggleFilters.addEventListener('click', () => {
+      const isCollapsed = catalogFiltersEl.classList.contains('is-collapsed');
+      if (isCollapsed) {
+        catalogFiltersEl.classList.remove('is-collapsed');
+        catalogFiltersEl.classList.add('is-expanded');
+        btnToggleFilters.classList.add('is-expanded');
+        btnToggleFilters.setAttribute('aria-expanded', 'true');
+        btnToggleFilters.querySelector('.btn-toggle-filters__text').textContent = 'Свернуть';
+      } else {
+        catalogFiltersEl.classList.remove('is-expanded');
+        catalogFiltersEl.classList.add('is-collapsed');
+        btnToggleFilters.classList.remove('is-expanded');
+        btnToggleFilters.setAttribute('aria-expanded', 'false');
+        btnToggleFilters.querySelector('.btn-toggle-filters__text').textContent = 'Все категории';
+      }
+    });
+  }
 
 });

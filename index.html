@@ -17,9 +17,6 @@
 </head>
 <body>
 
-  <!-- ========================================================================
-       ШАПКА САЙТА (СВЕТЛАЯ ТЕМА)
-       ======================================================================== -->
   <header class="site-header" id="header">
     <div class="container header__content">
       <a href="#" class="brand-logo" aria-label="МАСТЕР КЛЮЧ на главную">
@@ -43,7 +40,7 @@
       </nav>
 
       <div class="header__actions">
-        <!-- Кнопка быстрого звонка для мобильных -->
+        
         <a href="tel:+79639569122" class="header__phone-btn-mobile" aria-label="Позвонить мастеру">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -70,7 +67,6 @@
           </span>
         </div>
 
-        <!-- Кнопка 2ГИС -->
         <a href="https://2gis.ru/krasnoyarsk/firm/70000001052644549" target="_blank" rel="noopener" class="btn-2gis" title="Открыть карточку организации в 2ГИС">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
@@ -83,9 +79,6 @@
 
   <main>
 
-    <!-- ========================================================================
-         HERO SECTION
-         ======================================================================== -->
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__content">
@@ -137,7 +130,7 @@
         </div>
 
         <div class="hero__aside">
-          <!-- Карточка мастерской с фоном TG Doodle (ключ, замок, часы) -->
+          
           <div class="hero-workshop-card" id="workshopCard">
             <div class="hero-workshop-card__top">
               <span class="hero-workshop-card__status is-open" id="heroLiveStatus">
@@ -195,7 +188,6 @@
               </div>
             </div>
 
-            <!-- Мини-карта в карточке мастерской с обрезкой OSM ватермарки -->
             <div class="hero-map-mini">
               <iframe 
                 src="https://www.openstreetmap.org/export/embed.html?bbox=92.943767%2C55.984802%2C92.963767%2C55.996802&amp;layer=mapnik&amp;marker=55.990802%2C92.953767"
@@ -218,9 +210,6 @@
       </div>
     </section>
 
-    <!-- ========================================================================
-         ГОРИЗОНТАЛЬНАЯ КАРУСЕЛЬ 20 КЛЮЧЕЙ
-         ======================================================================== -->
     <section class="carousel-section" id="catalog">
       <div class="container">
         
@@ -229,7 +218,6 @@
           <h2 class="section-title">Примеры <span>работ</span></h2>
         </div>
 
-        <!-- Мультивыбор категорий -->
         <div class="catalog-filters-wrapper">
           <div class="catalog-filters-header">
             <span class="catalog-filters-title">
@@ -240,7 +228,7 @@
             </span>
             <button type="button" class="catalog-filters-reset" id="resetFiltersBtn">Сбросить фильтры</button>
           </div>
-          <div class="catalog-filters" id="catalogFilters" role="group" aria-label="Фильтр категорий ключей">
+          <div class="catalog-filters" id="catalogFilters" class="catalog-filters is-collapsed" role="group" aria-label="Фильтр категорий ключей">
             <button type="button" class="filter-chip filter-chip--all active" data-category="all" aria-pressed="true">
               <span class="filter-chip__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -291,7 +279,6 @@
           </div>
         </div>
 
-                <!-- Переключатель вида: Карусель / Сетка всех ключей -->
         <div class="catalog-view-bar">
           <div class="catalog-view-switcher" role="tablist" aria-label="Переключение отображения ключей">
             <button type="button" class="view-switch-btn is-active" id="btnViewCarousel" data-view="carousel" role="tab" aria-selected="true">
@@ -300,7 +287,7 @@
                 <line x1="8" y1="6" x2="8" y2="18"></line>
                 <line x1="16" y1="6" x2="16" y2="18"></line>
               </svg>
-              <span>Карусель (по 2)</span>
+              <span>Карусель</span>
             </button>
             <button type="button" class="view-switch-btn" id="btnViewGrid" data-view="grid" role="tab" aria-selected="false">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -314,10 +301,8 @@
           </div>
         </div>
 
-        <!-- Контейнер сетки (для режима Все ключи плиткой) -->
         <div class="catalog-grid" id="catalogGrid" style="display: none;"></div>
 
-        <!-- Контейнер карусели со стрелками -->
         <div class="carousel-container">
           <button type="button" class="carousel-arrow carousel-arrow--left" id="prevKeyBtn" aria-label="Предыдущий ключ (стрелка влево)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -327,7 +312,7 @@
 
           <div class="carousel-viewport" id="carouselViewport">
             <div class="carousel-track" id="carouselTrack">
-              <!-- Карточки ключей генерируются через app.js -->
+              
             </div>
           </div>
 
@@ -343,16 +328,13 @@
             Показаны ключи: <span>#01 — #05</span> из 15
           </div>
           <div class="carousel-dots" id="carouselDots">
-            <!-- Точки навигации -->
+            
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ========================================================================
-         РАЗДЕЛ АДРЕС И КАРТА
-         ======================================================================== -->
     <section class="location-section" id="location">
       <div class="container">
         <div class="section-head">
@@ -364,7 +346,7 @@
         </div>
 
         <div class="location-grid">
-          <!-- Карточка контактов -->
+          
           <div class="location-info-card">
             <div>
               <h3 class="location-info-card__title">МАСТЕР КЛЮЧ</h3>
@@ -441,7 +423,6 @@
             </div>
           </div>
 
-          <!-- Карта OpenStreetMap -->
           <div class="osm-map-card">
             <div class="osm-map-header">
               <span class="osm-map-tag">Мы на карте</span>
@@ -463,7 +444,7 @@
             </div>
 
             <div class="osm-map-footer">
-              <!-- Индикатор статуса вместо ссылки OpenStreetMap -->
+              
               <div class="map-status-pill is-open" id="mapLiveStatus" aria-live="polite">
                 <span class="status-pulse-dot"></span>
                 <span class="status-status-text">Мы открыты</span>
@@ -482,9 +463,6 @@
 
   </main>
 
-  <!-- ========================================================================
-       FOOTER
-       ======================================================================== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer__grid">
