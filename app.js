@@ -192,8 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
       catalogGrid.innerHTML = '<div style="padding: 3rem 1rem; text-align: center; color: var(--color-gray-500); grid-column: 1 / -1; font-weight: 600;">По выбранным категориям ключи не найдены</div>';
       return;
     }
+    const total = items.length;
     items.forEach((key, idx) => {
       const card = createCardElement(key, idx);
+      if (total % 4 === 2 && idx === total - 2) {
+        card.classList.add('key-card--center-start');
+      }
       catalogGrid.appendChild(card);
     });
   }

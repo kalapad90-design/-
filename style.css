@@ -1716,10 +1716,26 @@ button {
   margin-block: 0.5rem 2rem;
 }
 
+/* Center the last 2 cards in a 4-column row (cols 2 and 3) */
+@media (min-width: 1101px) {
+  .catalog-grid > .key-card--center-start,
+  .catalog-grid > .key-card:nth-child(4n + 1):nth-last-child(2) {
+    grid-column-start: 2;
+  }
+}
+
 @media (max-width: 1100px) {
   .catalog-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+  }
+}
+
+/* Center the last 2 cards in a 3-column row */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .catalog-grid > .key-card:nth-child(3n + 1):nth-last-child(2),
+  .catalog-grid > .key-card:nth-child(3n + 1):nth-last-child(2) ~ .key-card {
+    transform: translateX(calc(50% + 8px));
   }
 }
 
